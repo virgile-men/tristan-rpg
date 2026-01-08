@@ -1,0 +1,26 @@
+{
+  "name": "tristan-rpg",
+  "version": "1.0.0",
+  "description": "Application RPG de développement personnel - Objectif niveau 100 avant le 20 juin 2026",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "db:init": "tsx src/db/init.ts"
+  },
+  "keywords": ["rpg", "self-improvement", "xp", "missions"],
+  "author": "Tristan",
+  "license": "MIT",
+  "dependencies": {
+    "hono": "^4.6.0",
+    "@hono/node-server": "^1.13.0",
+    "better-sqlite3": "^11.6.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎮 Tristan RPG - Devenir meilleur</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header avec profil -->
+    <header class="header">
+      <div class="header-content">
+        <div class="profile-section">
+          <div class="level-badge">
+            <span class="level-number" id="level">1</span>
+            <span class="level-label">Niveau</span>
+          </div>
+          <div class="xp-info">
+            <div class="xp-bar-container">
+              <div class="xp-bar" id="xp-bar" style="width: 0%"></div>
+            </div>
+            <div class="xp-text">
+              <span id="current-xp">0</span> / <span id="next-xp">100</span> XP
+            </div>
+          </div>
+        </div>
+        <div class="stats-quick">
+          <div class="stat-item">
+            <span class="stat-value" id="total-xp">0</span>
+            <span class="stat-label">XP Total</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="days-remaining">163</span>
+            <span class="stat-label">Jours restants</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="xp-per-day">200</span>
+            <span class="stat-label">XP/jour requis</span>
+          </div>
+          <div class="stat-item rewards-stat" id="rewards-btn">
+            <span class="stat-value" id="rewards-count">0</span>
+            <span class="stat-label">🎁 Récompenses</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="daily">📝 Saisie</button>
+      <button class="nav-tab" data-tab="stats">📊 Stats</button>
+      <button class="nav-tab" data-tab="history">📅 Historique</button>
+      <button class="nav-tab" data-tab="editor">⚙️ Éditeur</button>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="main-content">
+      <!-- Tab: Saisie quotidienne -->
+      <section class="tab-content active" id="tab-daily">
+        <div class="date-selector">
+          <button class="date-nav" id="prev-day">◀</button>
+          <input type="date" id="selected-date">
+          <button class="date-nav" id="next-day">▶</button>
+          <span class="date-lock" id="date-lock-indicator"></span>
+        </div>
+        
+        <div class="day-summary">
+          <span class="day-xp">XP du jour: <strong id="day-xp">0</strong></span>
+        </div>
+        
+        <div class="categories-grid" id="categories-container">
+          <!-- Généré dynamiquement -->
+        </div>
+      </section>
+
+      <!-- Tab: Statistiques -->
+      <section class="tab-content" id="tab-stats">
+        <div class="stats-period-selector">
+          <button class="period-btn active" data-period="weekly">Semaine</button>
+          <button class="period-btn" data-period="monthly">Mois</button>
+        </div>
+        
+        <div class="stats-summary" id="stats-summary">
+          <div class="stats-total">
+            <span class="stats-total-value" id="stats-total-xp">0</span>
+            <span class="stats-total-label">XP sur la période</span>
+          </div>
+          <div class="stats-average">
+            <span>Moyenne: <strong id="stats-average">0</strong> XP/jour</span>
+          </div>
+        </div>
+        
+        <div class="category-stats" id="category-stats">
+          <!-- Généré dynamiquement -->
+        </div>
+      </section>
+
+      <!-- Tab: Historique -->
+      <section class="tab-content" id="tab-history">
+        <div class="history-list" id="history-list">
+          <!-- Généré dynamiquement -->
+        </div>
+      </section>
+
+      <!-- Tab: Éditeur -->
+      <section class="tab-content" id="tab-editor">
+        <div class="editor-header">
+          <h2>⚙️ Éditeur de missions</h2>
+          <p class="editor-subtitle">Ajoute, modifie ou supprime des missions</p>
+        </div>
+        
+        <!-- Formulaire d'ajout -->
+        <div class="editor-add-form">
+          <h3>➕ Nouvelle mission</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="new-mission-category">Catégorie</label>
+              <select id="new-mission-category">
+                <!-- Généré dynamiquement -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="new-mission-name">Nom de la mission</label>
+              <input type="text" id="new-mission-name" placeholder="Ex: Méditation 10 min">
+            </div>
+            <div class="form-group">
+              <label for="new-mission-xp">XP</label>
+              <input type="number" id="new-mission-xp" min="1" max="500" value="20">
+            </div>
+            <div class="form-group form-checkbox">
+              <label>
+                <input type="checkbox" id="new-mission-bonus">
+                Bonus
+              </label>
+            </div>
+            <button class="btn-add-mission" id="btn-add-mission">Ajouter</button>
+          </div>
+        </div>
+        
+        <!-- Liste des missions éditables -->
+        <div class="editor-categories" id="editor-categories">
+          <!-- Généré dynamiquement -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal récompenses -->
+    <div class="modal" id="rewards-modal">
+      <div class="modal-content">
+        <button class="modal-close" id="close-rewards">&times;</button>
+        <h2>🎁 Récompenses disponibles</h2>
+        <p class="rewards-available">Tu as <strong id="modal-rewards-count">0</strong> récompense(s) à utiliser !</p>
+        <div class="rewards-list" id="rewards-list">
+          <!-- Généré dynamiquement -->
+        </div>
+        <div class="rewards-history">
+          <h3>Historique</h3>
+          <div id="rewards-history-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
