@@ -5,22 +5,34 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
+    "dev:cf": "wrangler dev",
     "build": "tsc",
     "start": "node dist/index.js",
-    "db:init": "tsx src/db/init.ts"
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create tristan-rpg-db",
+    "db:migrate": "wrangler d1 execute tristan-rpg-db --remote --file=./migrations/0001_init.sql",
+    "db:migrate:local": "wrangler d1 execute tristan-rpg-db --local --file=./migrations/0001_init.sql"
   },
-  "keywords": ["rpg", "self-improvement", "xp", "missions"],
+  "keywords": [
+    "rpg",
+    "self-improvement",
+    "xp",
+    "missions",
+    "cloudflare-workers"
+  ],
   "author": "Tristan",
   "license": "MIT",
   "dependencies": {
-    "hono": "^4.6.0",
     "@hono/node-server": "^1.13.0",
-    "better-sqlite3": "^11.6.0"
+    "better-sqlite3": "^11.6.0",
+    "hono": "^4.6.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260108.0",
     "@types/better-sqlite3": "^7.6.11",
     "@types/node": "^22.10.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "wrangler": "^3.114.16"
   }
 }

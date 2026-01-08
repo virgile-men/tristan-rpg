@@ -1,0 +1,17 @@
+name = "tristan-rpg"
+main = "src/worker.ts"
+compatibility_date = "2024-01-01"
+
+# Assets statiques (frontend)
+[assets]
+directory = "./src/public"
+
+# Base de données D1
+[[d1_databases]]
+binding = "DB"
+database_name = "tristan-rpg-db"
+database_id = "2c18f7b3-6552-484e-b89a-4de4ff6b38c1"  # Remplacer après `wrangler d1 create`
+
+# Variables d'environnement
+[vars]
+ENVIRONMENT = "production"
